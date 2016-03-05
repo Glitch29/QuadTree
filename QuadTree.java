@@ -23,8 +23,6 @@ public class QuadTree {
 		System.out.println(deepTree.printTree());	
 		QuadTree mergeTree = new QuadTree(deepTree, checkerTree);
 		System.out.println(mergeTree.printTree());
-		
-		
 	}
 	
 	public QuadTree(boolean isBlack){
@@ -42,16 +40,11 @@ public class QuadTree {
 			if (nodes[i].isWhite)
 				colorTest--;
 		}
-		if((isBlack = (colorTest == NUM_NODES)) == (isWhite = (colorTest == -NUM_NODES))){
+		if((isBlack = (colorTest == NUM_NODES)) == (isWhite = (colorTest == -NUM_NODES)))
 			copyNodes(nodes);
-		}
 	}
 	
-	private void copyNodes(QuadTree[] nodes){
-		for (int i = 0; i < NUM_NODES; i++)
-			this.nodes[i] = nodes[i];
-	}
-	
+	// Creates new QuadTree using rule {WW} = W; {BW, WB, BB} = B
 	public QuadTree(QuadTree left, QuadTree right){
 		nodes = new QuadTree[NUM_NODES];
 		if (left.isBlack || right.isBlack){
@@ -77,6 +70,11 @@ public class QuadTree {
 			isBlack = (colorTest == NUM_NODES);
 			isWhite = (colorTest == -NUM_NODES);
 		}
+	}
+	
+	private void copyNodes(QuadTree[] nodes){
+		for (int i = 0; i < NUM_NODES; i++)
+			this.nodes[i] = nodes[i];
 	}
 	
 	public String printTree(){
